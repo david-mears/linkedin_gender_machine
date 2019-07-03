@@ -17,7 +17,7 @@ Create a .env file in the root directory, and put in LINKEDIN_USERNAME=<your_use
 ## Uses
 
 ```
-$ python script.py <comapny_url>
+$ python script.py <company_url>
 ```
 e.g.
 
