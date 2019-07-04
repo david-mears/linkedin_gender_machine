@@ -4,3 +4,5 @@ debug.log
 geckodriver.log
 venv
 virtualenv
+
+__pycache__/

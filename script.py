@@ -90,26 +90,23 @@ except:
     names_response = Genderize().get(names)
 
 # Tally genders
-gender_tally_dict = {}
-total = 0
-for person in names_response:
+PRIOR_PROBABILITY_OF_NULL_BEING_MALE = 0.5
+gender_tally_dict = {
+    'male': 0,
+    'female': 0,
+}
 
-    # Check whether the person comes with a probability attached
-    try:
-        probability = person['probability']
-    except:
-        probability = 1.0 # i.e. We are certain that Genderizer hasn't labelled it male or female
-    
-    # Deal with any str probabilities from Genderize and convert to default type from Genderize
-    if type(probability) == str:
-        probability = float(probability)
-    
-    # Sum probabilities
-    try:
-        gender_tally_dict[person['gender']] += probability
-    except:
-        gender_tally_dict[person['gender']] = probability
+total = 0
+null_count = 0
+for person in names_response:
     total += 1
+
+    if person['gender'] == 'null':
+        null_count += 1
+        gender_tally_dict['male'] += PRIOR_PROBABILITY_OF_NULL_BEING_MALE
+        gender_tally_dict['female'] += (1-PRIOR_PROBABILITY_OF_NULL_BEING_MALE)
+    else:
+        gender_tally_dict[person['gender']] += float(person['probability'])
 
 gender_percent_dict = {}
 for gender in gender_tally_dict:
@@ -124,7 +121,7 @@ for key in gender_tally_dict:
 
 # Report
 
-print('\n\n')
+print()
 title = company_name + ' Report'
 underline = ''
 for char in title: underline += '-'
@@ -138,17 +135,14 @@ except:
     pass
 else:
     print('  Number of names according to LinkedIn: ' + str(linkedin_employee_count))
+print('  Number of names of unknown gender: ' + str(null_count))
 
-print('Gender tally:')
+print('\nEstimated gender tally:')
 for key in gender_tally_dict:
-    labels = {
-        'male': 'Male',
-        'female': 'Female',
-        'null': 'Other',
-    }
-    print('  ' + labels[key] + ': '
+    print('  ' + key.capitalize() + ': '
     + str(gender_tally_dict[key])
     + ' ('
     + str(int(gender_percent_dict[key]))
     + '%)')
+print()
        
