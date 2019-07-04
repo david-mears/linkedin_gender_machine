@@ -6,6 +6,9 @@ The library I'm using for guessing genders provides a probability estimate, so f
 
 ![screenshot of bar chart](bar_chart.png)
 
+![screenshot of histogram](histogram.png)
+
+
 ## Installation
 
 Create and activate the virtual environment. Then:
