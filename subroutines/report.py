@@ -18,9 +18,5 @@ def report(
     print('  Number of names of unknown gender: ' + str(null_count))
     print('\nEstimated gender tally:')
     for key in gender_tally_dict:
-        print('  ' + key.capitalize() + ': '
-        + str(gender_tally_dict[key])
-        + ' ('
-        + str(gender_percent_dict[key])
-        + '%)')
+        print('  %s:  %.2f (%d%%)' % (key.capitalize(), gender_tally_dict[key], gender_percent_dict[key]))
     print()

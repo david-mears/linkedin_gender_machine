@@ -11,4 +11,5 @@ def show_bar_chart(gender_tally_dict, gender_percent_dict):
             '%s (%d%%)' % (gender.capitalize(), percent)
         )
     plt.bar(x=x_labels,height=heights,color=['b','m'])
+    plt.ylabel('Number of employees')
     plt.show()
