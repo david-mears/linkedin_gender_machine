@@ -5,6 +5,7 @@ import time
 
 from dotenv import load_dotenv
 from genderize import Genderize
+from matplotlib import pyplot as plt
 from selenium import webdriver
 
 try:
@@ -119,30 +120,45 @@ for key in gender_tally_dict:
         Decimal(gender_tally_dict[key]) / Decimal(1)
     )
 
-# Report
+# Convert percent dictionary to integers
+for key in gender_percent_dict:
+    gender_percent_dict[key] =int(gender_percent_dict[key])
 
-print()
-title = company_name + ' Report'
-underline = ''
-for char in title: underline += '-'
-print(title)
-print(underline)
+def report():
+    print()
+    title = company_name + ' Report'
+    underline = ''
+    for char in title: underline += '-'
+    print(title)
+    print(underline)
+    print('  Number of names found: ' + str(len(names_response)))
+    try:
+        url
+    except:
+        pass
+    else:
+        print('  Number of names according to LinkedIn: ' + str(linkedin_employee_count))
+    print('  Number of names of unknown gender: ' + str(null_count))
+    print('\nEstimated gender tally:')
+    for key in gender_tally_dict:
+        print('  ' + key.capitalize() + ': '
+        + str(gender_tally_dict[key])
+        + ' ('
+        + str(gender_percent_dict[key])
+        + '%)')
+    print()
+report()
 
-print('  Number of names found: ' + str(len(names_response)))
-try:
-    url
-except:
-    pass
-else:
-    print('  Number of names according to LinkedIn: ' + str(linkedin_employee_count))
-print('  Number of names of unknown gender: ' + str(null_count))
-
-print('\nEstimated gender tally:')
-for key in gender_tally_dict:
-    print('  ' + key.capitalize() + ': '
-    + str(gender_tally_dict[key])
-    + ' ('
-    + str(int(gender_percent_dict[key]))
-    + '%)')
-print()
-       
+def show_bar_chart():
+    heights = []
+    for gender in gender_tally_dict:
+        heights.append(gender_tally_dict[gender])
+    x_labels = []
+    for gender in gender_percent_dict:
+        percent = gender_percent_dict[gender]
+        x_labels.append(
+            '%s (%d%%)' % (gender.capitalize(), percent)
+        )
+    plt.bar(x=x_labels,height=heights,color=['b','m'])
+    plt.show()
+show_bar_chart()

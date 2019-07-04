@@ -1,8 +1,6 @@
 example_response = [
   {"name":"peter","gender":"male","probability":"1.00","count":796},
   {"name":"peter","gender":"male","probability":"1.00","count":796},
-  {"name":"peter","gender":"male","probability":"1.00","count":796},
-  {"name":"peter","gender":"male","probability":"1.00","count":796},
   {"name":"lois","gender":"female","probability":"0.94","count":70},
   {"name":"lois","gender":"female","probability":"0.94","count":70},
   {"name":"lois","gender":"female","probability":"0.94","count":70},
