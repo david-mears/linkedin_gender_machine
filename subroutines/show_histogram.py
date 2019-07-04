@@ -2,7 +2,7 @@ from random import random
 from matplotlib import pyplot as plt
 
 
-def convert_gender_odds_to_male_odds(names_response):
+def convert_gender_odds_to_male_odds(names_response, prior):
     for person in names_response:
         if person['gender'] == 'male':
             person['probability_of_being_male'] = person['probability']
@@ -65,11 +65,11 @@ def get_outcomes_tallies_by_gender(populations_collection):
             male_outcomes_tally[number_of_males] = 1
             # If not male, then female.
             female_outcomes_tally[population[1]] = 1
-
+    return male_outcomes_tally, female_outcomes_tally
 
 def show_histogram(names_response, prior):
     NUMBER_OF_SIMULATIONS = 1000
-    names_response = convert_gender_odds_to_male_odds(names_response)
+    names_response = convert_gender_odds_to_male_odds(names_response, prior)
     populations_collection = run_simulations(
         NUMBER_OF_SIMULATIONS, names_response)
     male_outcomes_tally, female_outcomes_tally = get_outcomes_tallies_by_gender(
