@@ -16,6 +16,12 @@ Create a .env file in the root directory, and put in LINKEDIN_USERNAME=<your_use
 
 ## Uses
 
+To use fake sample data in example_response.py:
+```
+$ python script.py
+```
+
+To extract data from a real company page:
 ```
 $ python script.py <company_url>
 ```
@@ -24,3 +30,4 @@ e.g.
 ```
 $ python script.py https://www.linkedin.com/company/tails-com
 ```
+
