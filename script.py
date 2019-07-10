@@ -15,9 +15,7 @@ except IndexError:
     company_name = 'Example Company'
 else:
     URL = sys.argv[1]
-    company_name,
-    names_response,
-    linkedin_employee_count = scrape_web.scrape_web(URL)
+    company_name, names_response, linkedin_employee_count = scrape_web.scrape_web(URL)
 
 gender_tally_dict, null_count, total = tally_genders.tally_genders(
     names_response,

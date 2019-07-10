@@ -6,12 +6,13 @@ def convert_gender_odds_to_male_odds(names_response, prior):
     for person in names_response:
         if person['gender'] == 'male':
             person['probability_of_being_male'] = person['probability']
-        elif person['gender'] == 'null':
+        elif person['gender'] == 'male':
+            person['probability_of_being_male'] = 1 - \
+            float(person['probability'])
+        else:
             person['gender'] = 'male'
             person['probability_of_being_male'] = prior
-        else:
-            person['probability_of_being_male'] = 1 - \
-                float(person['probability'])
+            
     return names_response
 
 

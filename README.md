@@ -11,6 +11,8 @@ The library I'm using for guessing genders provides a probability estimate, so f
 
 ## Installation
 
+Make sure geckodriver is intalled and on PATH. Also make sure Firefox is installed.
+
 Create and activate the virtual environment. Then:
 
 ```

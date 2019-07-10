@@ -12,15 +12,15 @@ def tally_genders(names_response, prior):
     for person in names_response:
         total += 1
         gender = person['gender']
-        if gender == 'null':
+        if gender == 'male':
+            gender_tally_dict['male'] += float(person['probability'])
+            gender_tally_dict['female'] += 1 - float(person['probability'])
+        elif gender == 'female':
+            gender_tally_dict['female'] += float(person['probability'])
+            gender_tally_dict['male'] += 1 - float(person['probability'])
+        else:
             null_count += 1
             gender_tally_dict['male'] += prior
             gender_tally_dict['female'] += (1 - prior)
-        elif gender == 'male':
-            gender_tally_dict['male'] += float(person['probability'])
-            gender_tally_dict['female'] += 1 - float(person['probability'])
-        else:
-            gender_tally_dict['female'] += float(person['probability'])
-            gender_tally_dict['male'] += 1 - float(person['probability'])
 
     return gender_tally_dict, null_count, total
