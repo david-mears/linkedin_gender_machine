@@ -1,3 +1,5 @@
+Note - there is some unknown bug in this program. Don't trust the results.
+
 # LinkedIn Gender Machine
 
 A command-line-interface app that guesses at the gender-proportions of companies who have LinkedIn profiles. Caveat: you can't tell someone's gender from their name, for a variety of reasons. So take the data with a pinch of salt.
